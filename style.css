@@ -1,0 +1,76 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#for_flex {
+    display: flex;
+    /* border: 2px solid red; */
+
+}
+
+.width {
+    width: 250px;
+    height: 27px;
+}
+
+.height {
+    width: 515px;
+    height: 27px;
+}
+
+input {
+    margin-right: 10px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 1px 1px rgb(220, 170, 141);
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+
+.body {
+    width: 50vw;
+    height: 76vh;
+    margin: auto;
+    margin-top: 65px;
+    background-color: rgb(246, 247, 252);
+    box-shadow: 0px 0px 5px 5px rgb(215, 214, 214);
+    border-radius: 15px;
+    padding: 20px 90px;
+    box-sizing: border-box;
+}
+
+.fontsize {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.button1 {
+    width: 110PX;
+    height: 33px;
+    margin-top: 7px;
+    border-radius: 5px;
+    background-color: rgb(236, 125, 59);
+    border: none;
+    box-shadow: 0px 0px 1px 1px rgb(193, 173, 173);
+    cursor: pointer;
+}
+
+a {
+    color: black;
+}
+
+.check {
+    accent-color: rgb(236, 125, 59);
+}
+
+h2 {
+    text-shadow: 2px 2px rgb(177, 171, 168);
+}
+
+
+/* *****************php style*********************/
+.echo{
+    color: green;
+}
+/* ******************************************************************************** */
