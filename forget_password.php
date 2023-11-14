@@ -26,9 +26,21 @@ function sendMail($email, $resetToken)
         $mail->isHTML(true);
 
         $mail->Subject = 'Password Reset';
-        $mail->Body = "We got a request from you to reset the password! <br>
-        Click The Link Below for reset Password <br>
-        <a href='http://localhost/PROJECT_REGISTER_AND_LOGIN/reset_password.php?email=$email&&resetToken=$resetToken'>'>Click Here for Reset Password </a>";
+        $mail->Body = "
+    <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0; padding: 20px; background-color: #f4f4f4;'>
+        <h2 style='color: #3498db;'>Password Reset Request</h2>
+        <p style='color: #555;'>
+            We received a request from you to reset the password. Click the button below to proceed:
+        </p>
+        <a href='http://localhost/PROJECT_REGISTER_AND_LOGIN/reset_password.php?email=$email&resetToken=$resetToken'
+            style='display: inline-block; padding: 15px 30px; background-color: #3498db; color: #fff; text-decoration: none; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);'>
+            Reset Password
+        </a>
+        <p style='margin-top: 20px; color: #555;'>
+            If you did not request a password reset, please ignore this email.
+        </p>
+    </div>
+";
 
         if ($mail->send()) {
             header('Location: forget_password.php?success=Password reset link sent to your email.');

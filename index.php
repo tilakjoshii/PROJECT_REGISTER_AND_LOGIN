@@ -14,6 +14,7 @@ if (isset($_POST['user'])) {
         $verify = password_verify($pass, $data['password']);
         // echo "error: " . $verify;
         if ($verify == 1) {
+            session_regenerate_id(true);
             $_SESSION['username'] = $data;
             // echo "correct password";
             header('location:table.php?success="you login successfully"');
@@ -30,6 +31,45 @@ if (isset($_POST['user'])) {
     $connect->close();
 }
 ?>
+<?php
+
+//index.php
+
+//Include Configuration File
+include('sign_in_with_google.php');
+
+$login_button = '';
+
+
+if(isset($_GET["code"]))
+{
+
+ $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+
+
+ if(!isset($token['error']))
+ {
+ 
+  $google_client->setAccessToken($token['access_token']);
+
+ 
+  $_SESSION['access_token'] = $token['access_token'];
+
+
+  $google_service = new Google_Service_Oauth2($google_client);
+
+ 
+  $data = $google_service->userinfo->get();
+ }
+}
+ if(!isset($_SESSION['access_token']))
+{
+
+ $login_button = '<a href="'.$google_client->createAuthUrl().'">Login With Google</a>';
+}
+
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,9 +78,8 @@ if (isset($_POST['user'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="style1.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style11.css">
     <title>Login_Form</title>
     <style>
         .divpass {
@@ -65,7 +104,44 @@ if (isset($_POST['user'])) {
             display: none;
         }
     </style>
-    <link rel="stylesheet" href="./style11.css">
+    <style>
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        .google-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #00ff00;
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            justify-content: center;
+        }
+
+        .google-btn:hover {
+            background-color: #00cc00;
+            /* Darker shade of green on hover */
+        }
+
+        .google-icon-wrapper {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .google-icon {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn-text {
+            font-size: 14px;
+        }
+    </style>
 
 
 </head>
@@ -166,8 +242,7 @@ if (isset($_POST['user'])) {
                         echo '<div style="color:green;">' . $_GET['success'] . '</div>';
                     }
                     ?>
-                    <div class="links"> <a href="forget_password.php">Forgot Password</a> <a
-                            href="form_sample_for_new_user.php">Signup</a>
+                    <div class="links"> <a href="forget_password.php">Forgot Password</a> <a href="form_sample_for_new_user.php">Signup</a>
 
                     </div>
 
@@ -176,7 +251,15 @@ if (isset($_POST['user'])) {
                         <input type="submit" value="Login">
 
                     </div>
-
+                    <div class="google-btn">
+                        <div class="google-icon-wrapper">
+                            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google logo">
+                        </div>
+                       <?php
+            
+                        echo '<p class="btn-text">'.'<b>'.$login_button.'</b></p>'; 
+                         ?>
+                    </div>
                 </div>
 
             </div>

@@ -7,7 +7,11 @@ if (isset($_GET['sn'])) {
 
     // Check if the form is submitted
     if (isset($_POST['email'])) {
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
         $newEmail = $_POST['email'];
+        $phone = $_POST['phone'];
+        $website = $_POST['website'];
 
         // Retrieve the existing email for the specified record
         $getExistingEmailQuery = "SELECT email FROM student WHERE sn = ?";
@@ -37,17 +41,17 @@ if (isset($_GET['sn'])) {
             }
         }
 
-        // Update the email address
-        $updateEmailQuery = "UPDATE student SET email=? WHERE sn=?";
-        $stmt = $connect->prepare($updateEmailQuery);
-        $stmt->bind_param("si", $newEmail, $id);
+        // Update the record
+        $updateQuery = "UPDATE `student` SET `firstname`=?, `lastname`=?, `email`=?, `phonenumber`=?, `website`=?, `date_time`=current_timestamp() WHERE `sn`=?";
+        $stmt = $connect->prepare($updateQuery);
+        $stmt->bind_param("sssssi", $firstname, $lastname, $newEmail, $phone, $website, $id);
 
         if ($stmt->execute()) {
-            // Email address updated successfully
-            header('Location: table.php?sn=' . $id . '&success=email address updated successfully');
+            // Record updated successfully
+            header('Location: table.php?sn=' . $id . '&success=record updated successfully');
             exit();
         } else {
-            // Error updating the email address
+            // Error updating the record
             echo "Error: " . $stmt->error;
         }
 
