@@ -51,7 +51,7 @@
     <div class="body">
         <h2> Student Register In College</h2>
         <p class="fontsize">Enter The Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
-        <form action="register_user.php" id="forms" method="post" onsubmit="return validateForm();">
+        <form action="register_user.php" id="forms" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
 
             <div id="for_flex">
                 <div>
@@ -88,6 +88,12 @@
                     <input id="pass1" type="password" class="width" name="repassword" placeholder="" required>
                     <span class="spart" onclick="funclick2()"><i id="hide11" class="fa-regular fa-eye open"></i>
                         <i id="hide22" class="fa-regular fa-eye-slash close"></i></span>
+                </div>
+            </div>
+            <div id="for_flex">
+                <div class="divpass">
+                    <label for="uploadfile">Upload Profile Picture</label><br>
+                    <input style="padding-top: 6px;" id="pass" type="file" class="width" accept=".jpg, .png, .jpeg" name="uploadfile" placeholder="" required>
                 </div>
             </div>
 

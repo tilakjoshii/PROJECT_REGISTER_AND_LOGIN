@@ -86,6 +86,7 @@ if(isset($_GET["code"]))
     $lastname = $_SESSION['user_last_name'];
     $email = $_SESSION['user_email_address'];
     $phonenumber = $_SESSION['user_phone_number'];
+    $images = $_SESSION['user_image'];
     // require_once 'Database_table_create.php';
     $sql = "SELECT * FROM student WHERE email= '{$_SESSION['user_email_address']}' ";
     $result = $connect->query($sql);
@@ -96,7 +97,7 @@ if(isset($_GET["code"]))
         exit();
     }
     
-        $sql = "INSERT INTO `student` (`firstname`, `lastname`, `email`, `phonenumber`, `website`, `password`, `repassword`, `date_time`) VALUES ('$firstname', '$lastname', '$email', '$phonenumber', NULL, NULL, NULL, current_timestamp());";
+        $sql = "INSERT INTO `student` (`firstname`, `lastname`, `email`, `phonenumber`, `website`,`images`, `password`, `repassword`, `date_time`) VALUES ('$firstname', '$lastname', '$email', '$phonenumber', NULL,'$images', NULL, NULL, current_timestamp());";
    
     if ($connect->query($sql) == true) {
         $_SESSION['username'] = $firstname;

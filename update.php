@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
     <div class="body">
         <h2>Register</h2>
         <p class="fontsize">Enter The Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
-        <form action="update_click.php?sn=<?php echo $id; ?>" id="forms" method="post">
+        <form action="update_click.php?sn=<?php echo $id; ?>" id="forms" method="post" enctype="multipart/form-data">
 
             <div id="for_flex">
                 <div>
@@ -86,9 +86,13 @@ if ($result->num_rows > 0) {
                         <i id="hide22" class="fa-regular fa-eye-slash close"></i></span>
                 </div>
             </div> -->
-
-            <label class="fontsize" for="checkbox"><input type="checkbox" class="check">Creating an account means you're
-                okey with<a href="#">Terms and conditions</a> and <a href="#">Privacy Policy</a></label><br>
+            <div id="for_flex">
+                <div class="divpass">
+                    <label for="uploadfile">Upload Profile Picture</label><br>
+                    <input style="padding-top: 6px;" id="pass" type="file" class="width" accept=".jpg, .png, .jpeg" name="uploadfile" placeholder="" required>
+                </div>
+            </div>
+            <br>
             <button class="button1">update</button>
             <?php
             if (isset($_GET['error'])) {

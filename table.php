@@ -1,4 +1,5 @@
 
+
 <?php
 session_start();
 
@@ -10,6 +11,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 
 // Rest of your dashboard.php code goes here
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,15 +57,19 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
             border-collapse: collapse;
             padding: 10px 20px;
         }
+        .table_image img{
+            width: 150px;
+        }
     </style>
 </head>
 
-<body>
-    <div class="container">
+<body >
+    <div class="container" style="width: 90%; margin: auto">
         <h1>Student Details Table</h1>
         <table>
             <tr>
                 <th>SN</th>
+                <th>PROFILE</th>
                 <th>FIRST NAME</th>
                 <th>LAST NAME</th>
                 <th>EMAIL ADDRESS</th>
@@ -88,6 +94,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
                     <!-- echo '<tr><td>'.$row['sn'].'<td><td>'.$row['firstname'].'<td><td>'.$row['lastname'].'<td><td>'.$row['email'].'<td><td>'.$row['phonenumber'].'<td><td>'.$row['website'].'<td><td>'.$row['password'].'<td><td>'.$row['repassword'].'<td><td>'.$row['date_time'].'<td><tr>';    -->
                     <tr>
                         <td> <?php echo $row['sn']; ?> </td>
+                        <td class="table_image"> <img src="<?php echo $row['images']; ?>" alt="uploaded image"> </td>
                         <td> <?php echo $row['firstname']; ?> </td>
                         <td> <?php echo $row['lastname']; ?> </td>
                         <td> <?php echo $row['email']; ?> </td>

@@ -13,6 +13,28 @@ if (isset($_GET['sn'])) {
         $phone = $_POST['phone'];
         $website = $_POST['website'];
 
+        // ******file details*****************
+        $file_name = $_FILES['uploadfile']['name'];
+        $temp_name = $_FILES['uploadfile']['tmp_name'];
+        $error = $_FILES['uploadfile']['error'];
+        $custom_name = "user_upload_image";
+        $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+        $image = "images/" . $custom_name . $_SESSION['counter'] . "." . $extension;
+
+        // Validate file upload
+        if ($error !== UPLOAD_ERR_OK) {
+            header('Location: update.php?sn=' . $id . '&error=file upload failed');
+            exit();
+        }
+
+        // Move uploaded file
+        if (!move_uploaded_file($temp_name, "C:/xampp/htdocs/PROJECT_REGISTER_AND_LOGIN/images/" . $custom_name . $_SESSION['counter'] . "." . $extension)) {
+            header('Location: update.php?sn=' . $id . '&error=file move failed');
+            exit();
+        }
+
+        // ******file details end*****************
+
         // Retrieve the existing email for the specified record
         $getExistingEmailQuery = "SELECT email FROM student WHERE sn = ?";
         $stmt = $connect->prepare($getExistingEmailQuery);
@@ -42,9 +64,9 @@ if (isset($_GET['sn'])) {
         }
 
         // Update the record
-        $updateQuery = "UPDATE `student` SET `firstname`=?, `lastname`=?, `email`=?, `phonenumber`=?, `website`=?, `date_time`=current_timestamp() WHERE `sn`=?";
+        $updateQuery = "UPDATE `student` SET `firstname`=?, `lastname`=?, `email`=?, `phonenumber`=?, `website`=?, `images`=?, `date_time`=current_timestamp() WHERE `sn`=?";
         $stmt = $connect->prepare($updateQuery);
-        $stmt->bind_param("sssssi", $firstname, $lastname, $newEmail, $phone, $website, $id);
+        $stmt->bind_param("ssssssi", $firstname, $lastname, $newEmail, $phone, $website, $image, $id);
 
         if ($stmt->execute()) {
             // Record updated successfully
