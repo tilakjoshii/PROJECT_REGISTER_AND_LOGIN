@@ -14,7 +14,6 @@ if (isset($_POST['user'])) {
         $verify = password_verify($pass, $data['password']);
         // echo "error: " . $verify;
         if ($verify == 1) {
-            session_regenerate_id(true);
             $_SESSION['username'] = $data;
             // echo "correct password";
             header('location:table.php?success="you login successfully"');

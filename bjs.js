@@ -30,3 +30,13 @@ console.log(pass);
         close.style.display = "block";
     }
 }
+function validateForm() {
+    var checkbox = document.getElementById("termsCheckbox");
+
+    if (!checkbox.checked) {
+        alert("Please agree to the Terms and Conditions and Privacy Policy.");
+        return false;
+    }
+
+    return true;
+}

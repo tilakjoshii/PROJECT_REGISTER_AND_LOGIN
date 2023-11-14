@@ -51,7 +51,7 @@
     <div class="body">
         <h2> Student Register In College</h2>
         <p class="fontsize">Enter The Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
-        <form action="register_user.php" id="forms" method="post">
+        <form action="register_user.php" id="forms" method="post" onsubmit="return validateForm();">
 
             <div id="for_flex">
                 <div>
@@ -91,7 +91,7 @@
                 </div>
             </div>
 
-            <label class="fontsize" for="checkbox"><input type="checkbox" class="check">Creating an account means you're
+            <label class="fontsize" for="checkbox"><input type="checkbox" id="termsCheckbox" class="check">Creating an account means you're
                 okey with<a href="#">Terms and conditions</a> and <a href="#">Privacy Policy</a></label><br>
             <button class="button1">Register</button>
             <a class="button" href="index.php" >log in</a><br>
