@@ -146,6 +146,7 @@ if(isset($_GET["code"]))
 </head>
 
 <body>
+    
     <!-- <div class="row">
         <div class="facebook-text">
             <h1>SNSC Student</h1>
@@ -252,7 +253,7 @@ if(isset($_GET["code"]))
                     </div>
                     <div class="google-btn">
                         <div class="google-icon-wrapper">
-                            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google logo">
+                            <img class="google-icon" src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google logo">
                         </div>
                        <?php
             
